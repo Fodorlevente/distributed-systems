@@ -124,7 +124,6 @@ public class Agent {
 		this.agentCode = agentCode;
 
 		System.out.println(String.format("Ügynökség neve: " + agency.getName() + ". Ügynök kódja: " + agentCode));
-		
 
 		System.out.println("Álnevek: ");
 		for (int i = 0; i < names.size(); i++) {
@@ -140,4 +139,19 @@ public class Agent {
 		clientThread = new Thread(new Client(this));
 	}
 
+	public void threadStrart() {
+		this.clientThread.start();
+		System.out.println(String.format(agency.getCode() + " kliens szál elindítva!"));
+
+		this.serverThread.start();
+		System.out.println(String.format(agency.getCode() + " szerver szál elindítva!"));
+	}
+	
+	// random generált álnév visszaadása
+	public String getRandomName() {
+		return this.names.get(this.r.nextInt(this.names.size()));
+	}
+	
+	
+	
 }
