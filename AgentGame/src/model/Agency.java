@@ -8,12 +8,15 @@ public class Agency {
 	private int code;
 	private List<Agent> agents;
 	public static int numberOfAgency;
+	private boolean isGameOver;
+	public static int count = 2;
 	
 	public Agency(String name, int code, List<Agent> agents) {
 		super();
 		this.name = name;
 		this.code = code;
 		this.agents = agents;
+		this.isGameOver = false;
 	}
 	
 	public String getName() {
@@ -39,6 +42,14 @@ public class Agency {
 	}
 	public static void setNumberOfAgency(int numberOfAgency) {
 		Agency.numberOfAgency = numberOfAgency;
+	}
+	
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 	
 	public void addAgent(Agent agent) {

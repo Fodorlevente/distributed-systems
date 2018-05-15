@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,12 @@ public class Agent {
 		makeAgent(agency, agentCode);
 		this.clientPort = clientPort;
 		this.serverPort = serverPort;
+	}
+	
+	public Agent(Agency agency, int agentCode) {
+		makeAgent(agency, agentCode);
+		this.serverPort = -1;
+		this.clientPort = -1;
 	}
 
 	// Getters and Setters:
@@ -116,6 +123,22 @@ public class Agent {
 
 	public void setTipsOfAgentCode(Map<String, Map<Integer, Boolean>> tipsOfAgentCode) {
 		this.tipsOfAgentCode = tipsOfAgentCode;
+	}
+	
+	public int getServerPort() {
+		return serverPort;
+	}
+	
+	public int getClientPort() {
+		return clientPort;
+	}
+	
+	public void setServerPort(int serverPort) {
+		this.serverPort = serverPort;
+	}
+
+	public void setClientPort(int clientPort) {
+		this.clientPort = clientPort;
 	}
 	
 	private void makeAgent(Agency agency, int agentCode) {
@@ -206,6 +229,23 @@ public class Agent {
 			}
 		}
 		return tips;
+	}
+	
+	public String getRandomSecret(boolean isSecreat) {
+		List<String> secretsList = new ArrayList<>();
+		secretsList.addAll(secrets.keySet());
+
+		if (!isSecreat) {
+			return secretsList.get(this.r.nextInt(secretsList.size()));
+		} else {
+			String tempSecret = secretsList.get(this.r.nextInt(secretsList.size()));
+			while (secrets.get(tempSecret) == false) {
+				tempSecret = secretsList.get(this.r.nextInt(secretsList.size()));
+			}
+			secrets.put(tempSecret, false);
+
+			return tempSecret;
+		}
 	}
 	
 }
