@@ -184,6 +184,10 @@ public class Agent {
 		return this.secrets.containsValue(true);
 	}
 	
+	public boolean isArrested() {
+		return !isSecreatAvailable();
+	}
+	
 	private String getFileName() {
 		return ("agent" + agency.getCode() + "-" + agentCode + ".txt");
 	}

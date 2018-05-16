@@ -16,7 +16,7 @@ public class Server extends Node implements Runnable {
 	public Server(Agent agent) {
 		super(agent);
 	}
-	
+
 	public void run() {
 		while(agent.isSecreatAvailable() && !agent.getAgency().isGameOver()) {
 			try {
